@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:movie_app/models/movie_detail.dart';
@@ -18,7 +16,7 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
         MovieDetail movieDetail = await movieRepo.getMovieDetails(event.movie);
         emit(MovieDetailLoaded(movieDetail));
       } catch (e) {
-        // log(e.toString());
+        emit(MovieDetailStateError());
       }
     });
   }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/bloc/movie_detail/movie_detail_bloc.dart';
@@ -22,7 +20,7 @@ class MovieDetailPage extends StatelessWidget {
         child: BlocBuilder<MovieDetailBloc, MovieDetailState>(
           builder: (context, state) {
             if (state is MovieDetailLoading) {
-              return Center(child: const CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
             if (state is MovieDetailLoaded) {
               return SingleChildScrollView(

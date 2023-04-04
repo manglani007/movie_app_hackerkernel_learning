@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/bloc/movie/movies_bloc.dart';
@@ -17,9 +19,21 @@ class MoviesList extends StatelessWidget {
             builder: (_) => MovieDetailPage(movie: state.movie),
           ));
         }
+
+        if (state is MoviesStateError) {
+          log("ERROORO");
+        }
       },
       builder: (context, state) {
         if (state is LoadingMovieState) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (state is MoviesStateError) {
+          return const Center(child: Text("Something Went Wrong"));
+        }
+
+        if (state is MoviesStateError) {
           return const Center(child: CircularProgressIndicator());
         }
 

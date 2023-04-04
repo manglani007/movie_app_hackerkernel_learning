@@ -14,3 +14,5 @@ class GenresSelectedState extends GenresState {
   final List<Genres> allGaners;
   GenresSelectedState(this.ganers, this.allGaners);
 }
+
+class GenresStateError extends GenresState {}

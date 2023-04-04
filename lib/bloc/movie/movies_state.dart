@@ -28,3 +28,5 @@ class MovieDetailsLoaded extends MoviesState {
   final MovieList movieList;
   MovieDetailsLoaded(this.movieDetail, this.movieList);
 }
+
+class MoviesStateError extends MoviesState {}

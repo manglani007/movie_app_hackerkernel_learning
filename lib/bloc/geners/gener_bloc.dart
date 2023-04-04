@@ -9,8 +9,12 @@ class GenresBloc extends Bloc<GenresEvent, GenresState> {
   GenresBloc() : super(GenresLoadingState()) {
     on<GenresFetch>((event, emit) async {
       emit(GenresLoadingState());
-      var allGenresList = await _movieRepo.getAllgenres();
-      emit(GenresLoaded(allGenresList));
+      try {
+        var allGenresList = await _movieRepo.getAllgenres();
+        emit(GenresLoaded(allGenresList));
+      } catch (e) {
+        emit(GenresStateError());
+      }
     });
 
     on<GenresSelectedEvent>((event, emit) async {

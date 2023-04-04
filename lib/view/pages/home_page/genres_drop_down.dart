@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/bloc/geners/gener_bloc.dart';
@@ -10,8 +12,19 @@ class GenresDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenresBloc, GenresState>(
+    return BlocConsumer<GenresBloc, GenresState>(
+      listener: (context, state) {
+        if (state is GenresStateError) {
+          log("Error Snackbar");
+        }
+      },
       builder: (context, state) {
+        if (state is GenresStateError) {
+          return const Center(
+            child: Text("Something Went Wrong"),
+          );
+        }
+
         if (state is GenresLoaded) {
           List<DropdownMenuItem<Genres>> namesList = [];
           for (var element in state.ganers) {
@@ -31,9 +44,12 @@ class GenresDropDown extends StatelessWidget {
             namesList.add(DropdownMenuItem<Genres>(
                 value: element, child: Text(element.name.toString())));
           }
-          return dropDownButton(
-              namesList, context, GenresLoaded(state.allGaners),
-              selectedValue: state.ganers);
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: dropDownButton(
+                namesList, context, GenresLoaded(state.allGaners),
+                selectedValue: state.ganers),
+          );
         }
         return Container();
       },

@@ -6,7 +6,8 @@ import 'package:movie_app/models/movie_model.dart';
 import '../models/gener_model.dart';
 
 class MovieRepo {
-  final Dio _dio = Dio();
+  final Dio _dio =
+      Dio(BaseOptions(connectTimeout: const Duration(seconds: 10)));
 
   Future<List<Genres>> getAllgenres() async {
     try {
