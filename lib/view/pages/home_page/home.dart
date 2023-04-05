@@ -36,13 +36,6 @@ class HomePage extends StatelessWidget {
                   content: Text('No Internet Connection'),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                    (Route<dynamic> route) => false);
-              } else {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (_) => const HomePage(),
-                ));
               }
             },
           ),
